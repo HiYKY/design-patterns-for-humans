@@ -298,23 +298,23 @@ $expert->getDescription(); // Output: I can only fit iron doors
 > 想象你在麦当劳，你要一个“巨无霸”，他们马上就给你了，没有疑问，这是简单工厂的逻辑。但如果创建逻辑包含更多步骤。比如你想要一个自定义赛百味套餐，你有多种选择来制作汉堡，例如你要哪种面包？你要哪种调味酱？你要哪种奶酪？等。这种情况就需要建造者模式来处理。
 
 白话
-> 让你能创建不同特点的对象而避免构造污染。当一个对象都多种特点的时候比较实用。或者在创造逻辑里有许多步骤的时候。
+> 让你能创建不同特点的对象而避免构造函数污染。当一个对象都多种特点的时候比较实用。或者在创造逻辑里有许多步骤的时候。
  
 维基百科
 > The builder pattern is an object creation software design pattern with the intentions of finding a solution to the telescoping constructor anti-pattern.
 
-Having said that let me add a bit about what telescoping constructor anti-pattern is. At one point or the other we have all seen a constructor like below:
+话虽如此，让我写一点关于伸缩构造函数反面模式。在某些时候，我们都看过下面这样的构造函数
  
 ```php
 public function __construct($size, $cheese = true, $pepperoni = true, $tomato = false, $lettuce = true) {
 }
 ```
 
-As you can see; the number of constructor parameters can quickly get out of hand and it might become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in future. This is called telescoping constructor anti-pattern.
+如你所见；构造函数参数的数量马上就要失去控制，而且梳理参数也会变得困难。而且如果你将来想要增加更多选项，参数也会继续增加。这就叫做伸缩构造函数反面模式。
 
 **代码例子**
 
-The sane alternative is to use the builder pattern. First of all we have our burger that we want to make
+正常的做法是使用创建者模式。首先我们有了要做的汉堡
 
 ```php
 class Burger {
@@ -335,7 +335,7 @@ class Burger {
 }
 ```
 
-And then we have the builder
+然后我们有了建造者
 
 ```php
 class BurgerBuilder {
@@ -375,7 +375,7 @@ class BurgerBuilder {
     }
 }
 ```
-And then it can be used as:
+然后可以这样使用
 
 ```php
 $burger = (new BurgerBuilder(14))
@@ -387,24 +387,24 @@ $burger = (new BurgerBuilder(14))
 
 **何时使用？**
 
-When there could be several flavors of an object and to avoid the constructor telescoping. The key difference from the factory pattern is that; factory pattern is to be used when the creation is a one step process while builder pattern is to be used when the creation is a multi step process.
+当对象有多种特性而要避免构造函数变长。和工厂模式的核心区别是；当创建过程只有一个步骤的时候使用工厂模式，而当创建过程有多个步骤的时候使用创造者模式。
 
-🐑 Prototype
+🐑 原型模式
 ------------
 真实世界例子
-> Remember dolly? The sheep that was cloned! Lets not get into the details but the key point here is that it is all about cloning
+> 记得多利吗？那只克隆羊！不要在意细节，现在的重点是克隆
 
 白话
-> Create object based on an existing object through cloning.
+> 通过克隆已有的对象来创建新对象。
 
 维基百科
 > The prototype pattern is a creational design pattern in software development. It is used when the type of objects to create is determined by a prototypical instance, which is cloned to produce new objects.
 
-In short, it allows you to create a copy of an existing object and modify it to your needs, instead of going through the trouble of creating an object from scratch and setting it up.
+长话短说，它让你创建已有对象的拷贝，然后修改到你要的样子，而不是从头开始建造。
 
 **代码例子**
 
-In PHP, it can be easily done using `clone`
+在 PHP 里，简单的使用 `clone` 就可以了
   
 ```php
 class Sheep {
@@ -433,7 +433,7 @@ class Sheep {
     }
 }
 ```
-Then it can be cloned like below
+然后它可以被这样克隆
 ```php
 $original = new Sheep('Jolly');
 echo $original->getName(); // Jolly
@@ -446,28 +446,28 @@ echo $cloned->getName(); // Dolly
 echo $cloned->getCategory(); // Mountain sheep
 ```
 
-Also you could use the magic method `__clone` to modify the cloning behavior.
+你也可以使用魔法方法 `__clone` 来改变克隆逻辑。
 
 **何时使用？**
 
-When an object is required that is similar to existing object or when the creation would be expensive as compared to cloning.
+当一个对象需要跟已有的对象相似，或者当创造过程比起克隆来太昂贵时。
 
-💍 Singleton
+💍 单例模式
 ------------
 真实世界例子
-> There can only be one president of a country at a time. The same president has to be brought to action, whenever duty calls. President here is singleton.
+> 一个国家同一时间只能有一个总统。当使命召唤的时候，这个总统要采取行动。这里的总统就是单例的。
 
 白话
-> Ensures that only one object of a particular class is ever created.
+> 确保制定的类只生成一个对象。
 
 维基百科
 > In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
 
-Singleton pattern is actually considered an anti-pattern and overuse of it should be avoided. It is not necessarily bad and could have some valid use-cases but should be used with caution because it introduces a global state in your application and change to it in one place could affect in the other areas and it could become pretty difficult to debug. The other bad thing about them is it makes your code tightly coupled plus it mocking the singleton could be difficult.
+单例模式其实被看作一种反面模式，应该避免过度使用。它不一定不好，而且确有一些有效的用例，但是应该谨慎使用，因为它在你的应用里引入了全局状态，在一个地方改变，会影响其他地方。而且很难 debug 。另一个坏处是它让你的代码紧耦合，而且很难仿制单例。
 
 **代码例子**
 
-To create a singleton, make the constructor private, disable cloning, disable extension and create a static variable to house the instance
+要创建一个单例，先让构造函数私有，不能克隆，不能继承，然后创造一个静态变量来保存这个实例
 ```php
 final class President {
     private static $instance;
@@ -493,7 +493,7 @@ final class President {
     }
 }
 ```
-Then in order to use
+然后要使用的话
 ```php
 $president1 = President::getInstance();
 $president2 = President::getInstance();
@@ -501,23 +501,23 @@ $president2 = President::getInstance();
 var_dump($president1 === $president2); // true
 ```
 
-Structural Design Patterns
+结构型模式
 ==========================
 白话
-> Structural patterns are mostly concerned with object composition or in other words how the entities can use each other. Or yet another explanation would be, they help in answering "How to build a software component?"
+> 结构型模式更关注对象的组合，换句话说，实体如何彼此使用。或者说，它们帮助解答“如何建造软件组件？”
 
 维基百科
 > In software engineering, structural design patterns are design patterns that ease the design by identifying a simple way to realize relationships between entities.
   
- * [Adapter](#-adapter)
- * [Bridge](#-bridge)
- * [Composite](#-composite)
- * [Decorator](#-decorator)
- * [Facade](#-facade)
- * [Flyweight](#-flyweight)
- * [Proxy](#-proxy)
+ * [适配器模式 Adapter](#-adapter)
+ * [桥接模式 Bridge](#-bridge)
+ * [组合模式 Composite](#-composite)
+ * [装饰器模式 Decorator](#-decorator)
+ * [门面模式 Facade](#-facade)
+ * [享元模式 Flyweight](#-flyweight)
+ * [代理模式 Proxy](#-proxy)
 
-🔌 Adapter
+🔌 适配器模式
 -------
 真实世界例子
 > Consider that you have some pictures in your memory card and you need to transfer them to your computer. In order to transfer them you need some kind of adapter that is compatible with your computer ports so that you can attach memory card to your computer. In this case card reader is an adapter.
