@@ -45,11 +45,11 @@
 > In software engineering, creational design patterns are design patterns that deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. The basic form of object creation could result in design problems or added complexity to the design. Creational design patterns solve this problem by somehow controlling this object creation.
  
  * [简单工厂模式 Simple Factory](#-简单工厂模式)
- * [工厂方法模式 Factory Method](#-factory-method)
- * [抽象工厂模式 Abstract Factory](#-abstract-factory)
- * [建造者模式 Builder](#-builder)
- * [原型模式 Prototype](#-prototype)
- * [单例模式 Singleton](#-singleton)
+ * [工厂方法模式 Factory Method](#-工厂方法模式)
+ * [抽象工厂模式 Abstract Factory](#-抽象工厂模式)
+ * [建造者模式 Builder](#-建造者模式)
+ * [原型模式 Prototype](#-原型模式)
+ * [单例模式 Singleton](#-单例模式)
  
 🏠 简单工厂模式
 --------------
@@ -509,13 +509,13 @@ var_dump($president1 === $president2); // true
 维基百科
 > In software engineering, structural design patterns are design patterns that ease the design by identifying a simple way to realize relationships between entities.
   
- * [适配器模式 Adapter](#-adapter)
- * [桥接模式 Bridge](#-bridge)
- * [组合模式 Composite](#-composite)
- * [装饰器模式 Decorator](#-decorator)
- * [门面模式 Facade](#-facade)
- * [享元模式 Flyweight](#-flyweight)
- * [代理模式 Proxy](#-proxy)
+ * [适配器模式 Adapter](#-适配器模式)
+ * [桥接模式 Bridge](#-桥接模式)
+ * [组合模式 Composite](#-组合模式)
+ * [装饰器模式 Decorator](#-装饰器模式)
+ * [门面模式 Facade](#-门面模式)
+ * [享元模式 Flyweight](#-享元模式)
+ * [代理模式 Proxy](#-代理模式)
 
 🔌 适配器模式
 -------
@@ -1123,16 +1123,16 @@ $door->close(); // Closing lab door
 维基百科
 > In software engineering, behavioral design patterns are design patterns that identify common communication patterns between objects and realize these patterns. By doing so, these patterns increase flexibility in carrying out this communication.
 
-* [责任链模式 Chain of Responsibility](#-chain-of-responsibility)
-* [命令模式 Command](#-command)
-* [迭代器模式 Iterator](#-iterator)
-* [中介模式 Mediator](#-mediator)
-* [备忘录模式 Memento](#-memento)
-* [观察者模式 Observer](#-observer)
-* [访问者模式 Visitor](#-visitor)
-* [策略模式 Strategy](#-strategy)
-* [状态模式 State](#-state)
-* [模板模式 Template Method](#-template-method)
+* [责任链模式 Chain of Responsibility](#-责任链模式)
+* [命令模式 Command](#-命令模式)
+* [迭代器模式 Iterator](#-迭代器模式)
+* [中介模式 Mediator](#-中介模式)
+* [备忘录模式 Memento](#-备忘录模式)
+* [观察者模式 Observer](#-观察者模式)
+* [访问者模式 Visitor](#-访问者模式)
+* [策略模式 Strategy](#-策略模式)
+* [状态模式 State](#-状态模式)
+* [模板模式 Template Method](#-模板模式)
 
 🔗 责任链模式
 -----------------------
