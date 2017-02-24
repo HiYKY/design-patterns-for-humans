@@ -5,7 +5,7 @@
 🎉 对设计模式的极简说明！🎉
 </p>
 <p align="center">
-这个话题可以轻易让任何人糊涂。现在我尝试通过用<i>最简单</i>的方式说明它们，来让你（和我）牢记在心。
+这个话题可以轻易让任何人糊涂。现在我尝试通过用<i>最简单</i>的方式说明它们，来让你（和我）把他们吃透。
 </p>
 ***
 
@@ -24,7 +24,7 @@
 -----------------
 - 设计模式不是解决你所有问题的银弹。
 - 不要尝试强行使用它们；如果做了，不好的事情可能发生。请记住设计模式是**解决**问题的方案，不是**发现**问题；所以不要过度思考。
-- 如果在正确的地方以正确的方式使用，它们被证明是有帮助的；否则结果可能是一对可怕混乱的代码。
+- 如果在正确的地方以正确的方式使用，它们被证明是有帮助的；否则结果可能是一堆可怕混乱的代码。
 
 > 下面的代码示例使用 PHP-7 书写，但你不应止步于此，因为理念是相通的。再加上,**s对其他语言的支持正在路上**。
 
@@ -106,7 +106,7 @@ echo 'Height: ' . $door->getHeight();
 
 **什么时候使用？**
 
-当创建一个对象不只是几个赋值和逻辑计算，把这件工作交给一个工厂而不是到处重复相同的代码就比较重要了。
+当创建一个对象不只是几个赋值和逻辑计算，把这件工作交给一个工厂而不是到处重复相同的代码就比较合适了。
 
 🏭 工厂方法模式
 --------------
@@ -182,7 +182,7 @@ $marketingManager->takeInterview(); // Output: Asking about community building.
 
 **何时使用？**
 
-当一个类里有普遍性的处理过程，但是子类要在运行时才确定的时候。或者换句话说，调用者不知道它需要哪个子类。
+当一个类里有普遍性的处理过程，但是子类要在运行时才确定。或者换句话说，调用者不知道它需要哪个子类。
 
 🔨 抽象工厂模式
 ----------------
@@ -244,7 +244,7 @@ interface DoorFactory {
     public function makeFittingExpert() : DoorFittingExpert;
 }
 
-// Wooden factory to return carpenter and wooden door
+// 木头工厂返回木门和木匠
 class WoodenDoorFactory implements DoorFactory {
     public function makeDoor() : Door {
         return new WoodenDoor();
@@ -255,7 +255,7 @@ class WoodenDoorFactory implements DoorFactory {
     }
 }
 
-// Iron door factory to get iron door and the relevant fitting expert
+// 铁门工厂返回铁门和对应安装专家
 class IronDoorFactory implements DoorFactory {
     public function makeDoor() : Door {
         return new IronDoor();
@@ -273,17 +273,17 @@ $woodenFactory = new WoodenDoorFactory();
 $door = $woodenFactory->makeDoor();
 $expert = $woodenFactory->makeFittingExpert();
 
-$door->getDescription();  // Output: I am a wooden door
-$expert->getDescription(); // Output: I can only fit wooden doors
+$door->getDescription();  // 输出: I am a wooden door
+$expert->getDescription(); // 输出: I can only fit wooden doors
 
-// Same for Iron Factory
+// 铁门工厂也一样
 $ironFactory = new IronDoorFactory();
 
 $door = $ironFactory->makeDoor();
 $expert = $ironFactory->makeFittingExpert();
 
-$door->getDescription();  // Output: I am an iron door
-$expert->getDescription(); // Output: I can only fit iron doors
+$door->getDescription();  // 输出: I am an iron door
+$expert->getDescription(); // 输出: I can only fit iron doors
 ```
 
 如你所见，木门工厂包含了木匠 `carpenter` 和木门 `wooden door` 而铁门工厂包含了铁门 `iron door` 和焊工 `welder`。因此我们可以确保每扇制造出来的门不会带上错误的安装工。
@@ -335,7 +335,7 @@ class Burger {
 }
 ```
 
-然后我们有了建造者
+然后我们有了制作者
 
 ```php
 class BurgerBuilder {
@@ -458,7 +458,7 @@ echo $cloned->getCategory(); // Mountain sheep
 > 一个国家同一时间只能有一个总统。当使命召唤的时候，这个总统要采取行动。这里的总统就是单例的。
 
 白话
-> 确保制定的类只生成一个对象。
+> 确保指定的类只生成一个对象。
 
 维基百科
 > In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
@@ -672,7 +672,7 @@ echo $careers->getContent(); // "Careers page in Dark Black";
 -----------------
 
 现实例子
-> 任何组织都是由雇员组成。每个雇员都有相同的特征，即一笔薪水，一些责任，可能需要向别人汇报，可能有一些下属等。
+> 任何组织都是由员工组成。每个员工都有相同的特征，即一笔薪水，一些责任，可能需要向别人汇报，可能有一些下属等。
 
 白话
 > 组合模式让调用者可以用统一的模式对待不同的对象。
@@ -682,7 +682,7 @@ echo $careers->getContent(); // "Careers page in Dark Black";
 
 **代码例子**
 
-拿上面的雇员为例。下面是不同的雇员类型
+拿上面的员工为例。下面是不同的员工类型
 
 ```php
 
@@ -749,7 +749,7 @@ class Designer implements Employee {
 }
 ```
 
-下面是一个由不同类型雇员组成的组织
+下面是一个由不同类型员工组成的组织
 
 ```php
 class Organization {
@@ -775,11 +775,11 @@ class Organization {
 然后可以这样使用
 
 ```php
-// Prepare the employees
+// 准备员工
 $john = new Developer('John Doe', 12000);
 $jane = new Designer('Jane', 10000);
 
-// Add them to organization
+// 把他们加到组织里去
 $organization = new Organization();
 $organization->addEmployee($john);
 $organization->addEmployee($jane);
@@ -909,6 +909,7 @@ echo $someCoffee->getDescription(); // Simple Coffee, milk, whip, vanilla
 > A facade is an object that provides a simplified interface to a larger body of code, such as a class library.
 
 **代码例子**
+
 拿上面电脑为例。下面是电脑类
 
 ```php
@@ -987,15 +988,16 @@ $computer->turnOff(); // Bup bup buzzz! Haah! Zzzzz
 > In computer programming, flyweight is a software design pattern. A flyweight is an object that minimizes memory use by sharing as much data as possible with other similar objects; it is a way to use objects in large numbers when a simple repeated representation would use an unacceptable amount of memory.
 
 **代码例子**
+
 翻译上面的茶的例子。首先我们有了茶的类型和生成器
 
 ```php
-// Anything that will be cached is flyweight. 
-// Types of tea here will be flyweights.
+// 任何被缓存的东西都被叫做享元。 
+// 这里茶的类型就是享元。
 class KarakTea {
 }
 
-// Acts as a factory and saves the tea
+// 像工厂一样工作，保存茶
 class TeaMaker {
     protected $availableTea = [];
 
@@ -1060,6 +1062,7 @@ $shop->serve();
 > A proxy, in its most general form, is a class functioning as an interface to something else. A proxy is a wrapper or agent object that is being called by the client to access the real serving object behind the scenes. Use of the proxy can simply be forwarding to the real object, or can provide additional logic. In the proxy extra functionality can be provided, for example caching when operations on the real object are resource intensive, or checking preconditions before operations on the real object are invoked.
 
 **代码例子**
+
 拿上面安全门为例。首先我们有了门的接口和实现
 
 ```php
@@ -1200,27 +1203,27 @@ class Bitcoin extends Account {
 }
 ```
 
-现在我们用上面定义的环节（即 Bank, Paypal, Bitcoin）准备链
+现在我们用上面定义的环节（即银行 Bank，贝宝 Paypal，比特币 Bitcoin）准备链
 
 ```php
-// Let's prepare a chain like below
+// 我们准备下面这样的链
 //      $bank->$paypal->$bitcoin
 //
-// First priority bank
-//      If bank can't pay then paypal
-//      If paypal can't pay then bit coin
+// 首选银行 bank
+//      如果银行 bank 不能支付则选择贝宝 paypal
+//      如果贝宝 paypal 不能支付则选择比特币 bit coin
 
-$bank = new Bank(100);          // Bank with balance 100
-$paypal = new Paypal(200);      // Paypal with balance 200
-$bitcoin = new Bitcoin(300);    // Bitcoin with balance 300
+$bank = new Bank(100);          // 银行 Bank 有余额 100
+$paypal = new Paypal(200);      // 贝宝 Paypal 有余额 200
+$bitcoin = new Bitcoin(300);    // 比特币 Bitcoin 有余额 300
 
 $bank->setNext($paypal);
 $paypal->setNext($bitcoin);
 
-// Let's try to pay using the first priority i.e. bank
+// 我们尝试用首选项支付，即银行 bank
 $bank->pay(259);
 
-// Output will be
+// 输出将会是
 // ==============
 // Cannot pay using bank. Proceeding ..
 // Cannot pay using paypal. Proceeding ..: 
@@ -1231,7 +1234,7 @@ $bank->pay(259);
 -------
 
 现实例子
-> 一个普遍的例子是你在餐馆点餐。你 (即调用者 `Client`) 要求服务员 (即调用器 `Invoker`) 端来一些实物 (即命令 `Command`)，而服务员只是简单的把命令传达给知道怎么做菜的厨师 (即接收者 `Receiver`)。另一个例子是你 (即调用者 `Client`) 打开 (即命令 `Command`) 电视 (即接收器 `Receiver`)，通过使用遥控 (调用器 `Invoker`).
+> 一个普遍的例子是你在餐馆点餐。你 (即调用者 `Client`) 要求服务员 (即调用器 `Invoker`) 端来一些食物 (即命令 `Command`)，而服务员只是简单的把命令传达给知道怎么做菜的厨师 (即接收者 `Receiver`)。另一个例子是你 (即调用者 `Client`) 打开 (即命令 `Command`) 电视 (即接收者 `Receiver`)，通过使用遥控 (调用器 `Invoker`).
 
 白话
 > 允许你封装对象的功能。此模式的核心思想是分离调用者和接收者。
@@ -1340,6 +1343,7 @@ $remote->submit($turnOff); // Darkness!
 > In object-oriented programming, the iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements. The iterator pattern decouples algorithms from containers; in some cases, algorithms are necessarily container-specific and thus cannot be decoupled.
 
 **代码例子**
+
 在 PHP 里，用 SPL (标准 PHP 库) 实现非常简单。翻译上面的广播例子。首先我们有了广播台 `RadioStation`
 
 ```php
@@ -1440,7 +1444,7 @@ $stationList->removeStation(new Station(89)); // Will remove station 89
 首先，我们有一个中介，即聊天室
 
 ```php
-// Mediator
+// 中介
 class ChatRoom implements ChatRoomMediator {
     public function showMessage(User $user, string $message) {
         $time = date('M d, y H:i');
@@ -1481,7 +1485,7 @@ $jane = new User('Jane Doe', $mediator);
 $john->send('Hi there!');
 $jane->send('Hey!');
 
-// Output will be
+// 输出将会是
 // Feb 14, 10:58 [John]: Hi there!
 // Feb 14, 10:58 [Jane]: Hey!
 ```
@@ -1519,7 +1523,7 @@ class EditorMemento {
 }
 ```
 
-然后是我们的编辑器，即发起者，来实用备忘录对象
+然后是我们的编辑器，即发起者，来使用备忘录对象
 
 ```php
 class Editor {
@@ -1548,20 +1552,20 @@ class Editor {
 ```php
 $editor = new Editor();
 
-// Type some stuff
+// 输入一些东西
 $editor->type('This is the first sentence.');
 $editor->type('This is second.');
 
-// Save the state to restore to : This is the first sentence. This is second.
+// 保存状态到：This is the first sentence. This is second.
 $saved = $editor->save();
 
-// Type some more
+// 输入些别的东西
 $editor->type('And this is third.');
 
-// Output: Content before Saving
+// 输出: Content before Saving
 echo $editor->getContent(); // This is the first sentence. This is second. And this is third.
 
-// Restoring to last saved state
+// 恢复到上次保存状态
 $editor->restore($saved);
 
 $editor->getContent(); // This is the first sentence. This is second.
@@ -1629,20 +1633,20 @@ class JobPostings implements Observable {
 ```
 然后可以这样使用
 ```php
-// Create subscribers
+// 创建订阅者
 $johnDoe = new JobSeeker('John Doe');
 $janeDoe = new JobSeeker('Jane Doe');
 $kaneDoe = new JobSeeker('Kane Doe');
 
-// Create publisher and attach subscribers
+// 创建发布者，绑定订阅者
 $jobPostings = new JobPostings();
 $jobPostings->attach($johnDoe);
 $jobPostings->attach($janeDoe);
 
-// Add a new job and see if subscribers get notified
+// 添加一个工作，看订阅者是否收到通知
 $jobPostings->addJob(new JobPost('Software Engineer'));
 
-// Output
+// 输出
 // Hi John Doe! New job posted: Software Engineer
 // Hi Jane Doe! New job posted: Software Engineer
 ```
@@ -1650,7 +1654,7 @@ $jobPostings->addJob(new JobPost('Software Engineer'));
 🏃 访问者模式
 -------
 现实例子
-> 假设一些人访问迪拜。他们需要一些方式（即签证）来进入迪拜。抵达后，他们可以去迪拜的任何地方，而不用申请许可或者跑腿；他们知道的地方都可以去。访问者模式可以让你这样做，它帮你添加可以访问的地方，然后他们可以访问尽可能多的地方而不用跑腿。
+> 假设一些人访问迪拜。他们需要一些方式（即签证）来进入迪拜。抵达后，他们可以去迪拜的任何地方，而不用申请许可或者跑腿；他们知道的地方都可以去。访问者模式可以让你这样做，它帮你添加可以访问的地方，然后他们可以访问尽可能多的地方而不用到处跑腿。
 
 白话
 > 访问者模式可以让你添加更多的操作到对象，而不用改变他们。
@@ -1663,12 +1667,12 @@ $jobPostings->addJob(new JobPost('Software Engineer'));
 让我们以动物园模拟器为例，在里面我们有一些动物，我们必须让他们叫。让我们用访问者模式来翻译
 
 ```php
-// Visitee
+// 被访者
 interface Animal {
     public function accept(AnimalOperation $operation);
 }
 
-// Visitor
+// 访问者
 interface AnimalOperation {
     public function visitMonkey(Monkey $monkey);
     public function visitLion(Lion $lion);
@@ -1737,7 +1741,7 @@ $monkey->accept($speak);    // Ooh oo aa aa!
 $lion->accept($speak);      // Roaaar!
 $dolphin->accept($speak);   // Tuut tutt tuutt!
 ```
-我们本可以简单来给动物加一个继承层来做到这点，但是这样每当我们要给动物增加新功能的时候，我们就不得不改变动物。但是现在我们不用改变他们。比如，我们要给动物增加一个跳的行为，我们可以通过简单地增加一个新的访问者
+我们本可以简单地给动物加一个继承层来做到这点，但是这样每当我们要给动物增加新功能的时候，我们就不得不改变动物。但是现在我们不用改变他们。比如，我们要给动物增加一个跳的行为，我们可以通过简单地增加一个新的访问者
 
 ```php
 class Jump implements AnimalOperation {
@@ -1827,10 +1831,10 @@ class Sorter {
 $dataset = [1, 5, 4, 3, 2, 8];
 
 $sorter = new Sorter(new BubbleSortStrategy());
-$sorter->sort($dataset); // Output : Sorting using bubble sort
+$sorter->sort($dataset); // 输出 : Sorting using bubble sort
 
 $sorter = new Sorter(new QuickSortStrategy());
-$sorter->sort($dataset); // Output : Sorting using quick sort
+$sorter->sort($dataset); // 输出 : Sorting using quick sort
 ```
 
 💢 状态模式
@@ -1847,7 +1851,7 @@ $sorter->sort($dataset); // Output : Sorting using quick sort
 
 **代码例子**
 
-让我们以编辑器作为例子，它能让你改变文本的状态，比如比选择了加粗，它开始以加粗字体书写，如果选择倾斜，就以倾斜字体等等。
+让我们以编辑器作为例子，它能让你改变文本的状态，比如你选择了加粗，它开始以加粗字体书写，如果选择倾斜，就以倾斜字体等等。
 
 首先，我们有状态接口和一些状态实现
 
@@ -1908,7 +1912,7 @@ $editor->setState(new LowerCaseState());
 $editor->type('Fourth line');
 $editor->type('Fifth line');
 
-// Output:
+// 输出:
 // First line
 // SECOND LINE
 // THIRD LINE
@@ -1935,7 +1939,7 @@ $editor->type('Fifth line');
 
 **代码例子**
 
-想象我们有一个构建工具帮我们测试，查错，构建，生成构建报告（即代码报告，查错报告），然后把应用发布到测试服务器。
+想象我们有一个构建工具帮我们测试，纠错，构建，生成构建报告（即代码报告，查错报告），然后把应用发布到测试服务器。
 
 首先是我们的基础类，它描述了构建算法的骨架
 ```php
@@ -2001,7 +2005,7 @@ class IosBuilder extends Builder {
 $androidBuilder = new AndroidBuilder();
 $androidBuilder->build();
 
-// Output:
+// 输出:
 // Running android tests
 // Linting the android code
 // Assembling the android build
@@ -2010,23 +2014,22 @@ $androidBuilder->build();
 $iosBuilder = new IosBuilder();
 $iosBuilder->build();
 
-// Output:
+// 输出:
 // Running ios tests
 // Linting the ios code
 // Assembling the ios build
 // Deploying ios build to server
 ```
 
-## 🚦 Wrap Up Folks
+## 🚦 收尾了同志们
 
-And that about wraps it up. I will continue to improve this, so you might want to watch/star this repository to revisit. Also, I have plans on writing the same about the architectural patterns, stay tuned for it.
+终于收尾了。我会继续改进这篇文档，所以你或许需要 watch/star 这个仓库来回访。
 
 ## 👬 Contribution
 
 - Report issues
 - Open pull request with improvements
 - Spread the word
-- Reach out to me directly at kamranahmed.se@gmail.com or on twitter [@kamranahmedse](http://twitter.com/kamranahmedse)
 
 ## License
 MIT © [Kamran Ahmed](http://kamranahmed.info)
