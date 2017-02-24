@@ -2031,5 +2031,8 @@ $iosBuilder->build();
 - Open pull request with improvements
 - Spread the word
 
+## 翻译
+[月球人](https://github.com/questionlin)
+
 ## License
 MIT © [Kamran Ahmed](http://kamranahmed.info)
