@@ -1636,7 +1636,6 @@ class JobPostings implements Observable {
 // 创建订阅者
 $johnDoe = new JobSeeker('John Doe');
 $janeDoe = new JobSeeker('Jane Doe');
-$kaneDoe = new JobSeeker('Kane Doe');
 
 // 创建发布者，绑定订阅者
 $jobPostings = new JobPostings();
